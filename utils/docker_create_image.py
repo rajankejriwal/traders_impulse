@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y curl
 WORKDIR /app
 COPY utils/. /app
 
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]
 """
 
 # Write the Dockerfile to a temporary file (for the build process)
