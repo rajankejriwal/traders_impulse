@@ -19,7 +19,7 @@ FROM python:3.9
 RUN apt-get update && apt-get install -y curl
 
 RUN pip install pip==22.0.2
-RUN pip install -r requirements.txt
+RUN pip install -r utils/requirements.txt
 
 WORKDIR /app
 COPY utils/. /app
