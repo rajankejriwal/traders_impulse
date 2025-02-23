@@ -874,7 +874,8 @@ def fetch_unique_id_from_bubble_api(bubble_api_token):
                 "key": "ec2_instance_id",
                 "constraint_type": "equals",
                 # "value": instance_id,
-                "value": "i-0c7e6350368bde5d4",
+                # "value": "i-0c7e6350368bde5d4",
+                "value": os.getenv("container_id"),
             }
         ]
 
