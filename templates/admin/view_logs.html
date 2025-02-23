@@ -1,0 +1,9 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Log File</h1>
+<pre>
+        {% for log in logs %}
+            {{ log }}
+        {% endfor %}
+    </pre>
+{% endblock %}

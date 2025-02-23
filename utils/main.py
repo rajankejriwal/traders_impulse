@@ -9,11 +9,8 @@ import logging
 from ratelimit import limits, sleep_and_retry
 import os
 
-# Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    filename=r"C:\Users\Administrator\Desktop\trading_bot.log",
-    format="%(asctime)s %(levelname)s:%(message)s",
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger()
 
@@ -843,30 +840,30 @@ def check_trading_conditions_and_close(
 def fetch_unique_id_from_bubble_api(bubble_api_token):
     try:
         # Obtain IMDSv2 token
-        token_url = "http://169.254.169.254/latest/api/token"
-        token_headers = {"X-aws-ec2-metadata-token-ttl-seconds": "21600"}
-        token_response = requests.put(token_url, headers=token_headers, timeout=5)
-        if token_response.status_code == 200:
-            token = token_response.text
-            logger.info("Successfully obtained IMDSv2 token.")
-        else:
-            logger.error(
-                f"Failed to obtain IMDSv2 token. Status code: {token_response.status_code}"
-            )
-            return None
+        # token_url = "http://169.254.169.254/latest/api/token"
+        # token_headers = {"X-aws-ec2-metadata-token-ttl-seconds": "21600"}
+        # token_response = requests.put(token_url, headers=token_headers, timeout=5)
+        # if token_response.status_code == 200:
+        #     token = token_response.text
+        #     logger.info("Successfully obtained IMDSv2 token.")
+        # else:
+        #     logger.error(
+        #         f"Failed to obtain IMDSv2 token. Status code: {token_response.status_code}"
+        #     )
+        #     return None
 
-        # Fetch the EC2 Instance ID using the token
-        metadata_url = "http://169.254.169.254/latest/meta-data/instance-id"
-        metadata_headers = {"X-aws-ec2-metadata-token": token}
-        response = requests.get(metadata_url, headers=metadata_headers, timeout=5)
-        if response.status_code == 200:
-            instance_id = response.text
-            logger.info(f"EC2 Instance ID: {instance_id}")
-        else:
-            logger.error(
-                f"Failed to fetch instance ID. Status code: {response.status_code}"
-            )
-            return None
+        # # Fetch the EC2 Instance ID using the token
+        # metadata_url = "http://169.254.169.254/latest/meta-data/instance-id"
+        # metadata_headers = {"X-aws-ec2-metadata-token": token}
+        # response = requests.get(metadata_url, headers=metadata_headers, timeout=5)
+        # if response.status_code == 200:
+        #     instance_id = response.text
+        #     logger.info(f"EC2 Instance ID: {instance_id}")
+        # else:
+        #     logger.error(
+        #         f"Failed to fetch instance ID. Status code: {response.status_code}"
+        #     )
+        #     return None
 
         # Construct the Bubble API URL to fetch trading_account based on ec2_instance_id
         bubble_api_url = "https://tradersimpulse.com/api/1.1/obj/trading_accounts"
@@ -876,7 +873,8 @@ def fetch_unique_id_from_bubble_api(bubble_api_token):
             {
                 "key": "ec2_instance_id",
                 "constraint_type": "equals",
-                "value": instance_id,
+                # "value": instance_id,
+                "value": "i-0c7e6350368bde5d4",
             }
         ]
 

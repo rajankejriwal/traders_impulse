@@ -2,8 +2,8 @@ import docker
 import sys
 
 image_name = "img1"
-unique_id = sys.argv[1]
-env = {"UNIQUE_ID": unique_id}
+container_id = sys.argv[1]
+env = {"container_id": container_id}
 
 # Initialize the Docker client
 client = docker.from_env()
@@ -14,9 +14,12 @@ existing_image = "python:3.9"  # You can change this to your base image
 # Run a container from the new image
 try:
     print("Running the container from the new image...")
-    container_name = f"container-{unique_id}"
+    container_name = f"container-{container_id}"
     container = client.containers.run(
-        image_name, detach=True, name=container_name, environment=env
+        image_name,
+        detach=True,
+        name=container_name,
+        environment=env,
     )
 
     # Output the container details
