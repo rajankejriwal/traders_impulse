@@ -874,7 +874,7 @@ def fetch_unique_id_from_bubble_api(bubble_api_token):
         # Define constraints as a list of dictionaries
         constraints = [
             {
-                "key": "ec2_instance_id",
+                "key": "docker_id",
                 "constraint_type": "equals",
                 # "value": instance_id,
                 # "value": "i-0c7e6350368bde5d4",
