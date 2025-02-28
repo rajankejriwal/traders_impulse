@@ -866,7 +866,10 @@ def fetch_unique_id_from_bubble_api(bubble_api_token):
         #     return None
 
         # Construct the Bubble API URL to fetch trading_account based on ec2_instance_id
-        bubble_api_url = "https://tradersimpulse.com/api/1.1/obj/trading_accounts"
+        # bubble_api_url = "https://tradersimpulse.com/api/1.1/obj/trading_accounts"
+        bubble_api_url = (
+            "https://tradersimpulse.com/version-test/api/1.1/obj/trading_accounts"
+        )
 
         # Define constraints as a list of dictionaries
         constraints = [
