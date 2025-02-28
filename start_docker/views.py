@@ -36,10 +36,11 @@ class RunDockerWithUniqueID(APIView):
     def post(self, request, *args, **kwargs):
         first_name = request.data.get("first_name", None)
         last_name = request.data.get("last_name", None)
+        account_number = request.data.get("account_number", None)
 
-        if not first_name and not last_name:
+        if not first_name or not last_name or not account_number:
             return Response(
-                {"details": "first_name and last_name are required"},
+                {"details": "first_name, last_name and account_number are required"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -52,6 +53,7 @@ class RunDockerWithUniqueID(APIView):
         Instance.objects.create(
             first_name=first_name,
             last_name=last_name,
+            account_number=account_number,
             container_id=container_id,
             logs=url,
         )
